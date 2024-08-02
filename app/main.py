@@ -24,6 +24,9 @@ def main():
             if cmd in list_commands:
                 sys.stdout.write(f"{cmd} is a shell builtin" )
                 sys.stdout.write("\n")
+            else: 
+                sys.stdout.write(f"{cmd}: not found" )
+                sys.stdout.write("\n")
         elif command not in list_commands:
             sys.stdout.write(f"{command}: command not found\n")
     

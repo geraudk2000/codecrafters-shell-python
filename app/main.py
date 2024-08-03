@@ -61,7 +61,7 @@ def main():
                 actual_path = os.getcwd()
                 new_path = os.path.join(actual_path, cmd)  # actual_path + "/" + cmd
                 path_absolute = relative_to_absolute(new_path)
-                print(new_path)
+                #print(new_path)
                 try:
                     os.chdir(path_absolute)
                     continue

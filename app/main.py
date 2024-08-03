@@ -5,7 +5,7 @@ import os
 def main():
     # Uncomment this block to pass the first stage
     
-    list_commands = set(["echo", "type", "exit", "pwd"])
+    list_commands = set(["echo", "type", "exit", "pwd", "cd"])
     PATH = os.environ.get('PATH')
     # Wait for user input
 
@@ -39,6 +39,10 @@ def main():
                     sys.stdout.write(f"{cmd}: not found\n")
         elif command == "pwd": 
             sys.stdout.write(os.getcwd() + "\n")
+        elif command == "cd":
+            if cmd: 
+                os.path.chdir(cmd)
+            
         elif command not in list_commands:
             for path in paths:
                 if os.path.isfile(f"{path}/{command}"): 

@@ -16,7 +16,9 @@ def main():
         command = user_input.split(" ")[0]
         args = user_input.split(" ")[1:]
         paths = PATH.split(":")
-        path_found = False
+
+        if len(user_input.split(" "))>1:
+            cmd = args[0]
         
         if user_input == "exit 0":
             break
@@ -24,11 +26,11 @@ def main():
             sys.stdout.write(" ".join(args))
             sys.stdout.write("\n")
         elif command == "type": 
-            cmd = args[0]
-            if cmd in list_commands: 
+            
+            if cmd and cmd in list_commands: 
                 sys.stdout.write(f"{cmd} is a shell builtin\n" )
                 continue
-            else:
+            elif cmd:
                 for path in paths:
                     if os.path.isfile(f"{path}/{cmd}"):
                         sys.stdout.write(f"{cmd} is {path}/{cmd}\n" )
@@ -37,7 +39,15 @@ def main():
                     sys.stdout.write(f"{cmd}: not found\n")
 
         elif command not in list_commands:
-            sys.stdout.write(f"{command}: command not found\n")
+            for path in paths:
+                if os.path.isfile(f"{path}/{command}"): 
+                    os.system(user_input)
+                    break
+            else:
+                sys.stdout.write(f"{cmd}: not found\n")
+
+
+            #sys.stdout.write(f"{command}: command not found ---\n")
     
 
 if __name__ == "__main__":

@@ -1,6 +1,23 @@
 import sys
 import os
 
+def relative_to_absolute(path):
+    stack = []
+
+    path = path.split('/')
+
+    for file in path:
+        if file == "." or file == "":
+            continue
+        elif file == "..":
+            if stack:
+                stack.pop()
+        else: 
+            stack.append(file)
+    #print(stack)
+    return "/" + "/".join(stack)
+
+
 
 def main():
     # Uncomment this block to pass the first stage
@@ -41,8 +58,12 @@ def main():
             sys.stdout.write(os.getcwd() + "\n")
         elif command == "cd":
             if cmd: 
+                actual_path = os.getcwd()
+                new_path = actual_path + "/" + cmd
+                path_absolute = relative_to_absolute(new_path)
+                print(new_path)
                 try:
-                    os.chdir(cmd)
+                    os.chdir(path_absolute)
                     continue
                 except Exception as e:
                     sys.stderr.write(f"{command}: {cmd}: No such file or directory\n")

@@ -44,7 +44,7 @@ def main():
                     os.system(user_input)
                     break
             else:
-                sys.stdout.write(f"{cmd}: not found\n")
+                sys.stdout.write(f"{command}: not found\n")
 
 
             #sys.stdout.write(f"{command}: command not found ---\n")

@@ -41,8 +41,11 @@ def main():
             sys.stdout.write(os.getcwd() + "\n")
         elif command == "cd":
             if cmd: 
-                os.path.chdir(cmd)
-            
+                try:
+                    os.chdir(cmd)
+                    continue
+                except Exception as e:
+                    sys.stderr.write(f"{command}: {cmd}:  No such file or directory\n")
         elif command not in list_commands:
             for path in paths:
                 if os.path.isfile(f"{path}/{command}"): 

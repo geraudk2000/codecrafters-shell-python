@@ -26,7 +26,7 @@ def main():
         elif command == "type": 
             cmd = args[0]
             if cmd in list_commands: 
-                sys.stdout.write(f"{cmd} is a shell builtin \n" )
+                sys.stdout.write(f"{cmd} is a shell builtin\n" )
                 continue
             else:
                 for path in paths:

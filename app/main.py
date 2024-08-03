@@ -32,8 +32,8 @@ def main():
                 for path in paths:
                     if os.path.isfile(f"{path}/{cmd}"):
                         sys.stdout.write(f"{cmd} is {path}/{cmd}\n" )
-                        path_found = True
-                if not path_found:
+                        break
+                else:
                     sys.stdout.write(f"{cmd}: not found\n")
 
         elif command not in list_commands:

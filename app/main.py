@@ -25,12 +25,16 @@ def main():
             sys.stdout.write("\n")
         elif command == "type": 
             cmd = args[0]
-            for path in paths:
-                if os.path.isfile(f"{path}/{cmd}"):
-                    sys.stdout.write(f"{cmd} is {path}/{cmd}\n" )
-                    path_found = True
-            if not path_found:
-                sys.stdout.write(f"{cmd}: not found\n")
+            if cmd in list_commands: 
+                sys.stdout.write(f"{cmd} is a shell builtin \n" )
+                continue
+            else:
+                for path in paths:
+                    if os.path.isfile(f"{path}/{cmd}"):
+                        sys.stdout.write(f"{cmd} is {path}/{cmd}\n" )
+                        path_found = True
+                if not path_found:
+                    sys.stdout.write(f"{cmd}: not found\n")
 
         elif command not in list_commands:
             sys.stdout.write(f"{command}: command not found\n")

@@ -59,7 +59,7 @@ def main():
         elif command == "cd":
             if cmd: 
                 actual_path = os.getcwd()
-                new_path = actual_path + "/" + cmd
+                new_path = os.path.join(actual_path, cmd)  # actual_path + "/" + cmd
                 path_absolute = relative_to_absolute(new_path)
                 print(new_path)
                 try:

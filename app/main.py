@@ -25,7 +25,7 @@ def main():
     PATH = os.environ.get('PATH')
     HOME = os.getenv('HOME')
     # Wait for user input
-    print(HOME)
+    #print(HOME)
     while True: 
         sys.stdout.write("$ ")
         sys.stdout.flush()

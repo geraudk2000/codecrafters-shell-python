@@ -14,7 +14,6 @@ def relative_to_absolute(path):
                 stack.pop()
         else: 
             stack.append(file)
-    #print(stack)
     return "/" + "/".join(stack)
 
 
@@ -24,8 +23,9 @@ def main():
     
     list_commands = set(["echo", "type", "exit", "pwd", "cd"])
     PATH = os.environ.get('PATH')
+    HOME = os.getenv('HOME')
     # Wait for user input
-
+    print(HOME)
     while True: 
         sys.stdout.write("$ ")
         sys.stdout.flush()
@@ -56,12 +56,16 @@ def main():
                     sys.stdout.write(f"{cmd}: not found\n")
         elif command == "pwd": 
             sys.stdout.write(os.getcwd() + "\n")
+        
         elif command == "cd":
-            if cmd: 
+            if cmd:
+                if cmd == "~": 
+                    os.chdir(HOME)
+                    continue
+
                 actual_path = os.getcwd()
-                new_path = os.path.join(actual_path, cmd)  # actual_path + "/" + cmd
+                new_path = os.path.join(actual_path, cmd) 
                 path_absolute = relative_to_absolute(new_path)
-                #print(new_path)
                 try:
                     os.chdir(path_absolute)
                     continue
